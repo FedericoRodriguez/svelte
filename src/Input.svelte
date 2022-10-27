@@ -16,17 +16,20 @@
 </script>
 
 <div>
-  <input placeholder="Search Movies..." {value} on:input={handlerInput} />
-
+  <div class="search-container">
+    <input placeholder="Search Movies..." {value} on:input={handlerInput} />
+  </div>
   {#await response}
     Loading...
   {:then movies}
-    <strong>Tenemos {movies.length} peliculas</strong>
-    {#each movies as { Title: movieTitle, Poster, Year }, index}
-      <Movie {index} title={movieTitle} poster={Poster} year={Year} />
-    {:else}
-      <strong>No tenemos peliculas</strong>
-    {/each}
+    <strong>We have {movies.length} films</strong>
+    <section class="article-container">
+      {#each movies as { Title: movieTitle, Poster, Year }, index}
+        <Movie {index} title={movieTitle} poster={Poster} year={Year} />
+      {:else}
+        <strong>No Films</strong>
+      {/each}
+    </section>
   {:catch error}
     <p>Something went wrong: {error.message}</p>
   {/await}
@@ -34,9 +37,24 @@
 
 <style>
   input {
-    color: #ff3e00;
+    color: #b81826;
     text-transform: uppercase;
     font-size: 1em;
     font-weight: 100;
+    width: 670px;
+  }
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0px;
+  }
+  .article-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 0px;
+    flex-wrap: wrap;
   }
 </style>

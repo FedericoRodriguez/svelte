@@ -13,7 +13,7 @@
 
   <Counter initialCounter={10} {...commonProps} />
 </main>
-<span>Out Side Styles for this span</span>
+<span>We have all the films you need</span>
 <Input />
 
 <style>
